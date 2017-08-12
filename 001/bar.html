@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>柱状图</title>
+    <style>
+        html {
+            height: 100%;
+        }
+        body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #main {
+            width: 600px;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div id="main"></div>
+    <script src="https://cdn.bootcss.com/echarts/3.6.2/echarts.min.js"></script>
+    <script>
+        var myChart = echarts.init(document.getElementById('main'))
+
+        var option = {
+                title: {
+                    text: 'ECharts 柱状图'
+                },
+                toolbox: {
+                    show: true,
+                    feature: {
+                        saveAsImage: {
+                            show: true
+                        }
+                    }
+                },
+                // 图例
+                legend: {
+                    data: ['销量']
+                },
+                // x轴
+                xAxis: {
+                    data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+                },
+                yAxis: {},
+                //数据
+                series: [{
+                    name: '销量',
+                    type: 'bar',
+                    data: [5, 20, 36, 10, 10, 20]
+                }]
+            }
+
+            myChart.setOption(option)
+    </script>
+</body>
+</html>

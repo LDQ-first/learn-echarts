@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>标题配置</title>
+    <style>
+        html {
+            height: 100%;
+        }
+        body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #main {
+            width: 600px;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div id="main"></div>
+    <script src="https://cdn.bootcss.com/echarts/3.6.2/echarts.min.js"></script>
+    <script>
+        var myChart = echarts.init(document.getElementById('main'))
+        var option = {
+            title: {
+                show: true,
+                text: 'Echarts 标题配置',
+                link: 'http://echarts.baidu.com/option.html#title.link',
+                target: 'blank',
+                subtext: '学习Echarts',
+                sublink: 'http://echarts.baidu.com/option.html#title',
+                subtarget: 'blank',
+                itemGap: 10,
+                top: 'auto',
+                left: 50, //数字是像素，还可以是center/left
+                borderColor: '#6B9ADF',
+                borderWidth: 5,
+                padding: 5,
+                shadowColor: '#FABF97',
+                shadowOffsetX: 2,
+                shadowOffsetY: 2,
+                shadowBlur: 5,
+                backgroundColor: 'rgba(191, 181, 239, 0.2)',
+                textStyle: {
+                    fontSize: 20,
+                    color: '#2E70CF'
+                },
+                subtextStyle: {
+                    color: '#2EA6CF',
+                    fontSize: 14
+                },
+                zlevel: 0,
+                z: 2
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    saveAsImage: {
+                        show: true
+                    }
+                }
+            },
+            legend: {
+                data: ['销量']
+            },
+            xAxis: {
+                data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
+            },
+            yAxis: {},
+            series: [{
+                name: '销量',
+                type: 'bar',
+                data: [5, 20, 36, 10, 10, 20]
+            }, {
+                name: '产量',
+                type: 'line',
+                data: [7, 30, 50, 11, 40, 80]
+            }]
+        }
+        myChart.setOption(option)
+    </script>
+</body>
+</html>
