@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>工具箱</title>
+    <style>
+        html {
+            height: 100%;
+        }
+        body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #main {
+            width: 600px;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div id="main"></div>
+    <script src="https://cdn.bootcss.com/echarts/3.6.2/echarts.min.js"></script>
+    <script>
+        var myChart = echarts.init(document.getElementById('main'))
+        var option = {
+            title: {
+                text: 'Echarts 工具箱'
+            },
+            toolbox: {
+                show: true,
+                orient: 'vertical',  // horizontal,vertical
+                itemSize: 20,
+                itemGap: 10,
+                showTitle: true,
+                zlevel: 0,
+                z: 2,
+                right: 'auto',
+                top: 'auto',
+                width: 'auto',
+                height: 'auto',
+                feature: {
+                    dataView: {
+                        show: true,
+                        title: '数据视图',
+                        readOnly: false,
+                        lang: ['数据视图', '关闭', '刷新'],
+                        backgroundColor: '#FFF',
+                        textareaColor: '#FA9997',
+                        textareaBorderColor: '#333',
+                        textColor: '#000',
+                        buttonColor: '#c23531',
+                        buttonTextColor: '#fff',
+                    },
+                    saveAsImage: {
+                        show: true,
+                        type: 'png',
+                        name: 'toolbox',
+                        title: '保存为图片',
+                        /*//保存的图片背景色，默认使用 backgroundColor，
+                        如果backgroundColor不存在的话会取白色。*/
+                        backgroundColor: '#8BCEE6',
+                        /*保存为图片时忽略的组件列表，默认忽略工具栏。*/
+                        excludeComponents: ['toolbox'],
+                        pixelRatio: 1
+                    },
+                    restore: {
+                        show: true,
+                        title: '还原'
+                    },
+                    dataZoom: {
+                        show: true,
+                        title: {
+                            zoom: '区域缩放',
+                            back: '区域缩放还原',
+                        },
+
+                    },
+                    magicType: {
+                        type: ['line', 'bar','stack','tiled'],
+                        title: {
+                            line: '切换为折线图',
+                            bar: '切换为柱状图',
+                            stack: '切换为堆叠',
+                            tiled: '切换为平铺',
+                        }
+                    }
+                },
+
+            },
+            legend: {
+                data: ['销量']
+            },
+            xAxis: {
+                data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
+            },
+            yAxis: {},
+            series: [{
+                name: '销量',
+                type: 'bar',
+                data: [5, 20, 36, 10, 10, 20]
+            }, {
+                name: '产量',
+                type: 'line',
+                data: [7, 30, 50, 11, 40, 80]
+            }]
+        }
+        myChart.setOption(option)
+    </script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>标记线和标记点</title>
+    <style>
+        html {
+            height: 100%;
+        }
+        body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #main {
+            width: 600px;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div id="main"></div>
+    <script src="https://cdn.bootcss.com/echarts/3.6.2/echarts.min.js"></script>
+    <script>
+        var myChart = echarts.init(document.getElementById('main'))
+        var option = {
+            title: {
+                text: 'Echarts 标记线和标记点'
+            },
+            toolbox: {
+                show: true,
+                orient: 'vertical',  // horizontal,vertical
+                feature: {
+                    dataView:{
+                        show:true
+                    },
+                    restore:{
+                        show:true
+                    },
+                    dataZoom:{
+                        show:true
+                    },
+                    saveAsImage: {
+                        show: true
+                    },
+                    magicType: {
+                        type: ['line', 'bar','stack','tiled'],
+                        title: {
+                            line: '切换为折线图',
+                            bar: '切换为柱状图',
+                            stack: '切换为堆叠',
+                            tiled: '切换为平铺',
+                        }
+                    }
+                }
+            },
+            legend: {
+                data: ['销量']
+            },
+            tooltip: {
+                show: true,
+                trigger: 'axis',  // 'item'
+                axisPointer: {
+                    type: 'shadow',   // line, shadow, cross
+                    axis: 'auto',  
+                    snap: true,
+                    z: 1
+                },
+                showContent: true,
+                alwaysShowContent: false,
+                triggerOn: 'mousemove|click',
+                showDelay: 0,
+                hideDelay: 100,
+                /*鼠标是否可进入提示框浮层中，默认为false，如需详情内交互，
+                如添加链接，按钮，可设置为 true。*/
+                enterable: false,
+                /*
+                是否将 tooltip 框限制在图表的区域内。
+                当图表外层的 dom 被设置为 'overflow: hidden'，或者移动端窄屏，
+                导致 tooltip 超出外界被截断时，此配置比较有用。
+                */
+                confine: false,
+                transitionDuration: 0.4,
+                /*
+                position,formatter比较强大，看官网
+                */
+               // position: ...,
+               // formatter: ...,
+                backgroundColor: 'rgba(50,50,50,0.7)',
+                borderColor: '#333',
+                borderWidth: 0,
+                padding: 5,
+                textStyle: {
+                    color: '#FFF',
+                    fontStyle: 'normal',
+                    fontWeight: 'normal',
+                    fontFamily: 'sans-serif',
+                    fontSize: 14
+                },
+                /*额外附加到浮层的 css 样式。
+                如下为浮层添加阴影的示例：*/
+                extraCssText: 'box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);'
+            },
+            xAxis: {
+                data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
+            },
+            yAxis: {},
+            series: [{
+                name: '销量',
+                type: 'bar',
+                data: [5, 20, 36, 10, 10, 20],
+                /*
+                markPoint
+                ECharts 提供的标记类型包括
+                'circle', 'rect', 'roundRect', 'triangle',
+                 'diamond', 'pin', 'arrow'
+                 也可以通过 'image://url' 设置为图片，其中 url 为图片的链接。
+                */
+                markPoint: {
+                    data: [
+                        {type: 'max', name: '最大值'},
+                        {type: 'min', name: '最小值', symbol:'arrow'}
+                    ]
+                },
+                markLine: {
+                    data: [
+                        {type: 'average', name: '平均值'}
+                    ]
+                }
+            }, {
+                name: '产量',
+                type: 'line',
+                data: [7, 30, 50, 11, 40, 80]
+            }]
+        }
+        myChart.setOption(option)
+    </script>
+</body>
+</html>

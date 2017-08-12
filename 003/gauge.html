@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>仪表图</title>
+    <style>
+        html {
+            height: 100%;
+        }
+        body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #main {
+            width: 600px;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div id="main"></div>
+    <script src="https://cdn.bootcss.com/echarts/3.6.2/echarts.min.js"></script>
+    <script>
+        var myChart = echarts.init(document.getElementById('main'))
+        var option = {
+             title : {
+                text: '仪表图',
+                link: 'http://echarts.baidu.com/option.html',
+                target: 'blank',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            series : [
+               {
+                    name: '业务指标',
+                    type: 'gauge',
+                    detail: {formatter:'{value}%'},
+                    data: [{value: 32, name: '完成率'}]
+                }
+            ]
+        }
+        myChart.setOption(option)
+        setInterval(function() {
+            option.series[0].data[0].value = (Math.random() * 100).toFixed(2)
+            myChart.setOption(option)
+        }, 2000)
+    </script>
+</body>
+</html>
